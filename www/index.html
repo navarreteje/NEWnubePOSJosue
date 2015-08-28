@@ -5,18 +5,248 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TweetSplit 1.0</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script type="text/javascript" src="cordova.js"></script>
+		
+		<script type="text/javascript" src="cordova.js"></script>
+		
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+		<link rel="stylesheet" href="css/jquery-ui.css"/>
+		
+		
+		<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+		<script src="js/raphael-min.js"></script>
+		
+	
+		
+		
+
+        <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+        <link href="css/fonts.css" rel="stylesheet" type="text/css">
+		
+		
+        
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="bower_components/weather-icons/css/weather-icons.min.css">
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		
+		
+		
+		
+        <link rel="stylesheet" href="styles/estilotemp.css">
+		<script type="text/javascript" src="js/index.js"></script>
+	
+        <!-- end needs images -->
+		<link rel="stylesheet" href="styles/mainformated.css">
 	</head>
     <body>      
-	<div class="container">
-		 <h1>HELLO MINDO</h1>
-			<script>
-				alert("HEEEEEEEEELLOOOOOOOO my name is patato");
-			</script>
+		 <body data-ng-app="app" id="app" data-custom-background data-off-canvas-nav class='cuerpoGeneral'>
+		 <div style="position:absolute;left:0px;top:-100%;width:100%;height:100%;" id="animatedLogo">
+				<table width="100%" height="100%">
+					<tr>
+						<td valign="center" align="center">
+							<img src="img/logo.png" />
+						</td>
+					</tr>
+				</table>
+		 </div>
+        <div data-ng-controller="AppCtrl" style="display:none;" id="contentIndex">
+		
+		 
+            <div data-ng-hide="isSpecificPage()" data-ng-cloak>
+               <section id="header" class="top-header">
+				<header class="clearfix">
+				<a href="javascript:void(0);" id="daClick" data-toggle-min-nav class="toggle-min" >
+				<i class="fa fa-bars"></i></a>
+					
+				<!-- Logo -->
+				<div class="logo" >
+					<a href="javascript:void(0);"  >
+						<span>NubePOS</span>
+					</a>
+				</div>
+				
+				<!-- <div style='background-color:#23AE89;width:200px;padding-top:15px;padding-bottom:15px;position:relative;z-index:2000;float:right;text-align:center;margin-right:10%;border-radius:10px;cursor:pointer;'>
+					Sincronizar
+				</div> -->
+				<!-- needs to be put after logo to make it working-->
+				<div class="menu-button" toggle-off-canvas>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</div>
+				 <ul class="nav-right pull-right list-unstyled" style='display:none;'>
+							<li class="dropdown text-normal nav-profile" dropdown is-open="status.isopenProfile">
+								<a href="javascript:;" class="dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+									<span class="hidden-xs">
+										<h3 id='empresaName' style='color:#FFF; padding-right:20px; margin-top:5px; margin-bottom:-3px;'>
+										</h3><span style='font-size:11px; color:#2ec1cc; font-weight:bold;' id='nemp'></span>
+									</span>
+								</a>
+							</li>
 
-	 </div>
+				</ul>        
+				</header>
+			   </section>
+               <aside id="nav-container">
+			   <div id="nav-wrapper">
+					<ul id="nav"
+						data-ng-controller="NavCtrl"
+						data-collapse-nav
+						data-slim-scroll
+						data-highlight-active>
+						<li><a ontap="envia('dashboard');" href='#'> <i class="fa fa-dashboard menuItem" style='color:#FFF;'><span class="icon-bg bg-danger menu-button"></span></i><span data-i18n="Resumen">Resumen </span></a>
+						
+						</li>
+						<li>
+							<a href='#'><i class="fa fa-usd  menuItem" style='color:#FFF;'><span class="icon-bg bg-orange"></span></i><span data-i18n="Ventas">Ventas</span><span style='padding-left:5px;' class="fa fa-caret-down" ></span></a>
+							<ul>
+								<li><a href='#'><i class="fa fa-caret-right"></i><span ontap="envia('nubepos/nubepos/');" data-i18n="Punto de Venta">Punto de Venta</span></a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i><span ontap="envia('historial');" data-i18n="Historial">Historial</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-diamond menuItem" style='color:#FFF;'><span class="icon-bg bg-warning"></span></i><span data-i18n="Productos">Productos</span><span style='padding-left:5px;' class="fa fa-caret-down" ></span></a>
+							<ul>
+								<li><a href='#'><i class="fa fa-caret-right"></i><span  ontap="envia('listaproductos');" data-i18n="Lista de Productos">Lista de Productos</span></a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i><span ontap="envia('nuevoproducto');" data-i18n="Nuevo Producto">Nuevo Producto</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-barcode menuItem" style='color:#FFF;'><span style='color:#FFF;' class="icon-bg bg-success" ></span></i><span data-i18n="Inventarios">Inventarios<span style='padding-left:5px;' class="fa fa-caret-down" ></span></span></a>
+							<ul>
+								<li><a href='#'><i class="fa fa-caret-right"></i><span  ontap="alert('Falta');" data-i18n="Toma de Inventario">Toma de Inventario</span></a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i><span data-i18n="Ver Inventario">Ver Inventario</span></a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-users menuItem" style='color:#FFF;'><span class="icon-bg bg-info"></span></i><span data-i18n="Clientes">Clientes</span><span style='padding-left:5px;' class="fa fa-caret-down" ></span></a>
+								<ul>
+								<li><a href='#'><i class="fa fa-caret-right"></i><span ontap="envia('listaclientes');" data-i18n="Lista de Clientes">Lista de Clientes</span></a></li>
+								<li><a href="#"><i class="fa fa-caret-right"></i><span ontap="envia('nuevocliente');" data-i18n="Nuevo Cliente">Nuevo Cliente</span></a></li>
+								</ul>
+						</li>
+						<li>
+							<a ontap="envia('cloud');" href='#'> 
+								<i class="fa fa-dashboard menuItem" style='color:#FFF;'>
+									<span class="icon-bg bg-primary">
+									<img src="img/sincro.gif" width="100%" />
+									</span>
+								</i>
+								<table style='' width='75%'>
+									<tr>
+										<td width='40%'>
+											<span data-i18n="Cloud">Ingresar</span><br/>
+										</td>
+										<td align='right' width='60%'>
+											<!--<span id='id_emp' style='font-size:12px;color:#31B0D5;'></span>-->
+											<i class="fa fa-exclamation-circle" id='alertaNuevos' style='color:red;display:none;'></i>
+										</td>
+									</tr>
+								</table>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</aside>
+            </div>
+            <div class="view-container">
+                <section data-ng-view id="content" class="animate-fade-up">
+				</section>
+            </div>
+        </div>
+		<!--divs para los json ---->
+		<div id="jsonProductos" style="display: none;"></div>
+		<div id="jsonCategorias" style="display: none;"></div>
+		<div id="jsonformaspago" style="display: none;">{"FormaPago":[{"id":"1","nombre":"Efectivo","imagen":"Efectivo"},{"id":"2","nombre":"Tarjetas","imagen":"Tarjetas"},{"id":"3","nombre":"Cheques","imagen":"Bancos"},{"id":"4","nombre":"CxC","imagen":"CxC"},{"id":"5","nombre":"Retencion","imagen":"Retenciones1"},{"id":"9","nombre":"Cortesia","imagen":"Cortesia"},{"id":"14","nombre":"Otros","imagen":"General"}]}</div>
+		<div id='jsonmisclientes' style="display:none"></div>
+		<div style='display:none;' id='jsoncaja'></div>
+		<!------>
+        <!---<script src="scripts/vendor.js"></script>-->
+        <!---<script src="scripts/ui.js"></script>-->
+        <!---<script src="scripts/app.js"></script>-->
+		<!--<script>onDeviceReady();</script>--->
+		<div class="modal fade" id="myModal" role="dialog" style='background-color:rgba(0,0,0,0.5);' data-backdrop='static'>
+		  <div class="modal-dialog modal-sm">
+			<div class="modal-content text-center" style='background-color:#000;  text-aling:center;'>
+				 <h2>Cargando...</h2>
+				 <img src='images/loader.gif' style='width:60px; margin:20px;'/>
+			</div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	<!--Envia a llamar a login-->
+		<div style='width:100%;height:100%;background-color:rgba(0,0,0,0.7);position:absolute;z-index:2000;display:none;' id="loginPractisis">	
+			<div  style="background: rgba(0,0,0 0.8) none repeat scroll 0% 0%; width: 600px; height: auto; position: relative; z-index: 20000; text-align: center;margin:0 auto;margin-top:10%;">
+				<br/>
+				<br/>
+				<div id="popupLogin" style="padding:20px;margin-top: 1000px; box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75); background-color: #ffffff; color: #000000; margin-left: auto; margin-right: auto;overflow:auto;height:350px;">
+					<div class="encabezadorojo" style='position:relative; height:30px; font-size:20px;'>LOGIN<img src='images/xcierre.png' style='position:absolute; top:3px; right:5px; cursor:pointer;' ontap='cerrarLogin()'/></div>
+					<div style='background-color:#E0DEDE; padding-top:20px; padding-bottom:20px;' id='contieneEmpresas'>
+						<div class="row" style="padding-top: 10px;padding-bottom: 10px;">
+							<div class="col-md-12"  style="text-align: center;">
+									<div class="panel panel-default">
+											<div  class="panel-heading">
+												<strong><span class="glyphicon glyphicon-th"></span>
+												 Autentificación de Usuario
+											</div>        
+											<div class="panel-body">
+												<div class="input-group">
+													<label class="input-group-addon">User:</label>
+													<input type="text" id="user" class="form-control" />
+												</div>
+												<div style="height:10px;"></div>
+												<div class="input-group">
+												<label class="input-group-addon">Pass:</label>
+												<input type="password" id="pass" class="form-control" />
+												</div>
+												<div style="height:10px;"></div>
+												<button class="btn btn-default" id='btnvalida' type="button" ontap="valida();">Login</button>
+											</div>
+									</div>
+											<div id="mensaje"></div>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="fade" style="position:absolute;left:0px;top:0px;margin:0px;padding:0px;z-index:900;background:rgba(0,0,0,0.5);width:100%;height:100%;display:none;"></div>
+    </body>
+	
+			
+
+	
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-  </body>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	
+		<script src="js/hammer.js" ></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js"></script>
+		<script src="js/morris.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<!-- Josue Includes -->
+		
+		<!--<link href="slide/bootstrap.css" rel="stylesheet">-->
+		<link href="slide/bootstrap-switch.css" rel="stylesheet">
+		<script src="slide/bootstrap-switch.js"></script>
+		<link href="slide/bootstrap-switch.css" rel="stylesheet">
+		<script src="slide/highlight.js"></script>
+		<script src="slide/bootstrap-switch.js"></script>
+		<script type="text/javascript" src="scripts/funciones.js"></script>
+	<script src="js/initialJS.js"></script>
+	
 </html>
+
+		
+
+
+
+
+
+
